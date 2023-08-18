@@ -1,0 +1,113 @@
+#---------------------------Numpy
+import numpy as np
+
+empid = np.arange(101,111)
+empid = np.add(empid,100)
+#arrayname[start:stop:steps]
+print(empid[0:6:6])
+print(empid.size)
+
+indx = np.where(empid >206)
+print(indx)
+print(empid[indx])
+
+newemp_id = np.arange(211,216)
+print(newemp_id)
+
+empid = np.append(empid,newemp_id)
+print(empid)
+mark=np.array([5, 2, 7, 4, 4, 2, 8, 6, 4, 4])
+np.sort(mark)
+print(np.sort(mark))
+print(np.sort(mark)[::-1])
+print(-np.sort(-mark))
+----------------------------------------------------------------------
+
+#----------------------------- Pandas
+import pandas as pd
+data = pd.read_csv("C:/Users/rolls/Downloads/Bigmarket.csv")
+#print(data.head())
+
+print(data.tail())
+print(data.shape)
+
+print(data.info)
+
+print(data[['Sales','Store']])
+
+print(data.iloc[2:5]) #showing 2 to 4 indexes
+
+print(data.iloc[2:5]['Sales']) #showing 2 to 4 indexes
+
+#filter the data
+print(data[data.Sales > 40000])
+
+print(data[(data.Sales > 40000) & (data.Store == 'B')])
+#sorting
+print(data.sort_values('Sales',ascending=False))
+print(data.sort_values('Sales')[::-1])
+print(data.sort_values(['Month','Store']))
+
+#display first 3 stores  that has highest value
+print(data.sort_values('Sales',ascending=False).head(3))
+print(data.sort_values('Sales').tail(3))
+print(data.sort_values('Sales',ascending=False)[:3])
+
+print(data['Sales'].nlargest(3))
+
+print(data.shape)
+print(data.head())
+
+dict = {'Month':['jun','jun','jun','jun','jun'],
+        'Store':['A','B','C','D','E'],
+        'Sales':['20000','30000','43000','23000','54000']
+        }
+
+newdata = pd.DataFrame(dict)
+print(newdata)
+
+data = data._append(newdata,ignore_index=True)
+data = pd.concat([data,newdata],ignore_index=True)
+
+state1 =['california','texas','newyork','chicago','mexico']
+state2 = state1 * 8
+statedict = {'State':state2}
+newcol = pd.DataFrame(statedict)
+data = pd.concat([data,newcol],axis=1)
+print(data.head())
+int(data['Sales'].sum())
+data['Sales'].mean()
+data['Sales'] = data['Sales'].replace([31037.0],80000)
+data['Store'] = data['Store'].replace(['A'],'AA')
+data = data.drop(0)
+data = data.drop(data[data['Store'] == 'AA'].index)
+print(data[data['Store'] == 'AA'])
+
+-------------------------------------------------------------
+-----------------------------Mysql - Python connection ----------------
+import mysql.connector
+from mysql.connector import Error
+
+try:
+    connection = mysql.connector.connect(host='localhost',
+                                         database='junebatch',
+                                         user='root',
+                                         password='123456')
+    if connection.is_connected():
+        db_Info = connection.get_server_info()
+        print("Connected to MySQL Server version ", db_Info)
+        cursor = connection.cursor()
+        cursor.execute("select database();")
+        record = cursor.fetchone()
+        print("You're connected to database: ", record)
+
+except Error as e:
+    print("Error while connecting to MySQL", e)
+finally:
+    if connection.is_connected():
+        cursor.close()
+        connection.close()
+        print("MySQL connection is closed")
+
+
+

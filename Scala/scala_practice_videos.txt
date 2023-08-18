@@ -1,0 +1,310 @@
+package org.itc.com
+
+object practice {
+  def main(args: Array[String]): Unit = {
+    val name ="mark"
+    val age = 18
+    val salary =25000.50
+    var status = ""
+
+    //string interpolation
+    println(name+" is "+age+" years old")
+    println(s"$name is $age years old")
+    println(f"$name%s is $age%d is old, salary is $salary%f")
+    println(s"hello \n world")
+    println(raw"hello \n world")
+
+    //if else
+    if(age  > 60)
+      {
+        println("Pensioner");
+      }
+    else if(age>25)
+      {
+        println("Active Employee")
+      }
+    else
+      {
+        println(" not an employee ")
+      }
+
+    status = if (age > 60) "Pensioner" else if(age>25) "Active Employee" else "Not an Employee";
+
+    print("status : "+status)
+
+    //while loop
+    var x = 0;
+    /*while(x < 10)
+      {
+        println("x :"+x)
+        x+=1;
+      }*/
+  //do-while
+    do {
+      println("x :" + x)
+      x += 1;
+    }while(x < 10)
+//for loop
+    for (i <- 1 to 5) {
+      println("i is : " + i)
+    }
+    for (i <- 1.to(10)) {
+      println("i is to: " + i)
+    }
+    for (i <- 1 until 5) {
+      println("i is until : " + i)
+    }
+    for (i <- 1 to 5; j <- 1 to 5) {
+      println("i & J : " + i + " " + j)
+    }
+    var lst = List(3, 2, 6, 5, 9, 7, 3, 7, 8, 4, 5, 6);
+    for (i <- lst) {
+      println(i)
+    }
+    for (i <- lst; if i < 6) {
+      println("less than 6 : " + i)
+    }
+    var result = for (i <- lst) yield i * i
+    println("square result : " + result)
+
+  var totalmark = 320;
+      result =0;
+  totalmark match {
+    case x if(x > 450) => println("percentage : 90 - 100");
+    case x if(x > 400) => println("percentage : 80 - 90");
+    case x if(x > 350) => println("percentage : 70 - 80");
+    case x if(x > 300) => println("percentage : 60 - 70");
+    case x if(x > 250) => println("percentage : 50 - 60");
+    case _ => println("Fail");
+  }
+}
+//----------------------------------------- function
+def abs(x: Double) =
+  if (x >= 0) x
+  else -x
+
+def sqrt(x: Double): Double = Math.sqrt(x)
+
+def addtwonum(x: Int, y: Int): Int = {
+  var result = 0;
+  if (x == y) {
+    result = 3 * (x + y);
+  }
+  else {
+    result = x + y;
+  }
+  return result
+}
+
+def checknum(x: Int): Boolean = {
+  var status = false
+  if (Math.abs(100 - x) <= 20 || Math.abs(300 - x) <=20) status = true
+  else
+    status = false
+
+  return status;
+}
+def main(args: Array[String]): Unit = {
+  println(checknum(101))
+  println(sqrt(8))
+  println(abs(-7))
+  println(practice2.abs(10))
+  println("enter number 1")
+  var num1 = StdIn.readInt()
+  println("enter number 1")
+  var num2 = StdIn.readInt()
+  println(addtwonum(num1,num2))
+
+}
+//-------------------------------------Higher Order function
+  def math(x: Double, y: Double, f: (Double, Double) => Double): Double = f(x, y);
+  def main(args: Array[String]): Unit = {
+    println(math(45, 67, (x, y) => x + y));
+    println(math(45, 67, (x, y) => x * y));
+    println(math(45, 67, (x, y) => x min  y));
+    println(math(45, 67, (x, y) => x max  y));
+  }
+
+//------------------------------------------partially Applied Fn
+    val sum = (x:Int,y:Int,z:Int)=>x+y+z;
+    val fn = sum(13,_:Int,_:Int);
+    println(sum(10,20,30))
+    println(fn(230,200))
+//------------------------------
+  def log(date:Date,msg:String): Unit = {
+    println(date+"  "+msg)
+  }
+  def main(args: Array[String]): Unit = {
+ val date = new Date();
+    val newlog = log(date , _:String);
+    newlog("Message from log1")
+    newlog("Message from log2")
+    newlog("Message from log3")
+    newlog("Message from log4")
+    newlog("Message from log5")
+  }
+//-------------------------------------
+
+    val str1: String = "Hello world";
+    val str2: String = "Welcome";
+    println(str1.length);
+    println(str1.concat(str2));
+//---------------------------Array
+
+  val myarray:Array[Int] = new Array[Int](6);
+  val myarray2 = new Array[Int](5)
+  val myarray3 = Array(1,2,3,4,5,6,7)
+  def main(args: Array[String]): Unit = {
+    myarray(0)=45;
+    myarray(1)=35
+    myarray(2)=25
+    myarray(3)=15
+    myarray(4)=65
+    myarray(5)=55
+    println(myarray)
+    for(x <- myarray) { println(x) }
+    for(x <- 0 to (myarray.length -1)) { println(myarray(x))}
+    val result = concat(myarray,myarray3);
+    for(x <- result) { println(x) }
+  }
+
+//-----------------------------------------list
+  val mylist: List[Int] = List(1,2,5,7,9,6)
+  val names:List[String] = List("Sam","Joe","Haris","Peter")
+  def main(args: Array[String]): Unit = {
+    println(0::mylist)
+    println(names)
+    println(1::5::6::9::Nil) //create list
+    println(mylist.head)
+    println(mylist.tail)
+    println(names.isEmpty)
+    println(mylist.reverse)
+    println(mylist.max)
+    mylist.foreach(println);
+    var sum : Int =0;
+    mylist.foreach(sum += _);
+    println(sum)
+    for(name <- names) { //print list of names using for loop
+      println(name)
+    }
+  }
+//--------------------------------------set
+  val myset: Set[Int] = Set(1,2,5,7,9,6)
+  val myset2: Set[Int] = Set(10,12,8,3,19,16)
+  val names:Set[String] = Set("Sam","Joe","Haris","Peter","Sam")
+  def main(args: Array[String]): Unit = {
+    println(names)
+    println(myset)
+    println(myset +10)
+    println(myset(3))
+    println(myset.head)
+    println(myset.tail)
+    println(myset.isEmpty)
+    println(myset ++ myset2)
+    println(myset.++(myset2))
+    println(myset.&(myset2))
+}
+
+//-------------------------------Map
+
+ val mymap :Map[Int,String] = Map(501 -> "Sam",502 ->"Susan",503 -> "Ram",504 -> "Azlam")
+  def main(args: Array[String]): Unit = {
+    println(mymap)
+    println(mymap(502))
+    println(mymap.keys)
+    println(mymap.values)
+    println(mymap.isEmpty)
+    mymap.keys.foreach{key =>
+      println("key : "+key);
+      println("value : "+mymap(key));
+    }
+  }
+
+//----------------------------------tuple
+  val mytuple = (1,2,"hello",true);
+  val mytuple2 = new Tuple3(1,2,"hello");
+  val mytuple3 = new Tuple2(1,"hello");
+  def main(args: Array[String]): Unit = {
+    println(mytuple._1);
+    println(mytuple._2);
+    println(mytuple._3);
+    println(mytuple._4);
+    }
+//-------------------------------------------option
+  var lst = List(1,2,3)
+  var mymap = Map(1->"ram",2->"sam",3->"joe")
+  def main(args: Array[String]): Unit = {
+    println(lst.find(_ > 2).get)
+    println(mymap.get(5).getOrElse("no name exist"))
+    }
+//-----------------------------------reduce/fold/scan
+  val lst = List(1,2,3,7,9,10)
+  val lst1 = List("A","B","C");
+  def main(args: Array[String]): Unit = {
+    println(lst.reduceLeft(_ + _))
+    println(lst1.reduceLeft(_ + _))
+    println(lst.reduceLeft((x,y)=> {println(x+ " "+y); x+y;}))
+    println(lst.reduceLeft(_ - _))
+    println(lst.reduceRight(_ - _))
+    println(lst.reduceLeft((x,y)=> {println(x+ " "+y); x-y;}))
+    println(lst.foldLeft(100)(_ + _))
+    println(lst1.foldLeft("z")(_ + _))
+    println(lst.foldLeft(100)(_ - _))
+    println(lst.scanLeft(20)(_ + _))
+    }
+
+//-----------------------------------
+abstract class Shape {
+  def area: Double
+}
+class circle extends  Shape {
+  def areacircle(r:Double):Double = {
+   var res = r*r;
+    return res
+  }
+  override def area: Double = areacircle(12);
+}
+class rectangle extends  Shape {
+  def arearectangle(l:Double,b:Double):Double = {
+    var res = l*b;
+    return res
+  }
+  override def area: Double = arearectangle(4,5);
+}
+object practice4 {
+  def main(args: Array[String]): Unit = {
+    var obj = new circle();
+    var obj1 = new rectangle();
+    println(obj.area)
+    println(obj1.area)
+  }
+}
+
+//--------------------------------------trait
+
+trait Resizable {
+  def resize: Int
+}
+class myclass(var height:Int,var width:Int) extends Resizable {
+var res = 0;
+def myclass(h:Int,w:Int) ={
+  height = h;
+  width = w;
+}
+  def area():Int = {
+    res = ((height * 2) * (width) * 3);
+    return res;
+  }
+  override def resize: Int =area();
+}
+object practice5 {
+  def main(args: Array[String]): Unit = {
+var obj = new  myclass(4,6);
+
+    println("resizable area : "+obj.resize);
+  }
+}
+
+//--------------------------------------
+ 
+

@@ -1,0 +1,249 @@
+print("Hello world")
+
+print("    /|")
+print("   / |")
+print("  /  |")
+print(" /   |")
+print("/____|")
+#---------------------
+emp_name="ROLLS JOHN"
+emp_age=33
+emp_location= "UK"
+
+print("Employee Name is "+emp_name+"\n age : "+str(emp_age)+"\n employee location : "+emp_location)
+#------------------------------
+from math import *
+my_num=-5
+
+print(floor(3.2))
+print(sqrt(18))
+#------------------------------input
+name = input("enter your name")
+
+print("employee name is : "+name+" !")
+
+#------------------------------calculator pgm
+num1 = input("enter the 1st number")
+num2 = input("enter the 2nd number")
+result = int(num1) + int(num2)
+
+print ("result = "+str(result))
+#-------
+num1 = input("enter the 1st number")
+num2 = input("enter the 2nd number")
+result = int(num1) / int(num2)
+
+print ("result = "+str(result))
+#------------------------------
+colour = input("enter a color: ")
+plural_noun = input("enter a plural noun")
+celebrity = input("enter a celebrity")
+
+print("roses are "+colour)
+print(plural_noun+" are blue")
+print("I love "+celebrity)
+#----------------------------list
+emplist = ["kevin", "ramesh", "sherin", "gopi", "anu"]
+lucky_number = [23, 5, 7, 8, 6]
+emplist.extend(lucky_number)  # extend 2 list
+emplist.append("david")  # add element
+emplist.insert(1, "kelly")  # insert value with specific index
+emplist.pop()  # remove last element
+print(emplist)
+
+emplist = ["kevin","ramesh","sherin","gopi","anu"]
+lucky_number =[23,5,7,8,6]
+emplist.sort()
+lucky_number.reverse()
+emplist2 = emplist.copy()
+print(emplist2)
+print(lucky_number)
+print(emplist)
+
+list1 = [1,4,2,3,5]
+list2 = [8,3,5,4,7]
+list2 = list1 + list2
+print(str(list2))
+#------------------------------tuple : not mutable( can't change value once it assigned)
+coordinate = (4,5)
+print(coordinate[1])
+#-------------------------------function
+def say_hi(name,msg):
+    print("Hello  "+name+ " "+msg)
+
+say_hi("Rolls","Welcome")
+
+def Rectangle(l,b):
+    area= l*b
+    perimeter= 2*(l+b)
+    return area,perimeter
+
+print("Area and Perimeter of a Rectangle is : "+str(Rectangle(5,6)))
+
+#-----------------------
+def emp_list(name, empage, empgender):
+    print("Employee name : " + name)
+    if int(empage) > 60 and empgender == "male" :
+        print("Employee status : Pensioner - Male")
+    elif int(empage) > 60 and empgender == "female" :
+        print("Employee status : Pensioner - Female")
+    elif int(empage) < 60 and empgender == "male" :
+        print("Employee status : Active - Male")
+    else:
+        print("Employee status : Active - Female")
+
+print(emp_list('Rolls John', "33", "male"))
+print(emp_list("John", "65", "male"))
+print(emp_list("Mary", "46", "female"))
+print(emp_list("Praisy", "68", "female"))
+
+
+def max_number(num1,num2,num3):
+    if num1>=num2 and num1 >=num3:
+        return num1
+    elif num2>=num1 and num2 >=num3:
+        return num2
+    else:
+        return num3
+print(max_number(13,4,8))
+
+#-----------------------calculator
+num1 = float(input("enter first no. : "))
+op = input("enter the operator")
+num2 = float(input("enter the second no :"))
+
+if op == "+":
+    print(num1 + num2)
+elif op == "-":
+    print(num1 - num2)
+elif op == "*":
+    print(num1 * num2)
+elif op == "/":
+    print(num1 / num2)
+else:
+    print("invalid operator")
+
+#----------------------------------
+month_conversion = {
+    "Jan": "January",
+    "Feb": "February",
+    "Mar": "March",
+    "Apr": "April",
+    "May": "May",
+    "Jun": "June",
+    "Jul": "July",
+    "Aug": "August",
+    "Sep": "September",
+    "Oct": "October",
+    "Nov": "November",
+    "Dec": "December"
+}
+print(month_conversion.get("Dec"))
+print(month_conversion.get("Luv"),"Not a valid key")
+
+#-------------------while loop-------------------
+i = 1
+while i<=10:
+    print(i)
+    i+=1
+print("Loop end")
+
+#-------------
+secret_word = "London"
+guess = ""
+guess_count = 0
+guess_limit = 3
+out_of_limit = False
+while secret_word != guess and not(out_of_limit):
+    if guess_count < guess_limit :
+     guess = input(("enter guess :"))
+     guess_count+= 1
+    else:
+        out_of_limit = True
+if out_of_limit:
+ print("You Lose !!!")
+else:
+    print("You Win !!!!")
+
+#------------------------------------------------------------------------
+#square
+my_list = [5,3,7,2,10]
+print(list(map(lambda num : num **2 ,my_list)))
+#sort 2nd key
+a=[(10,2),(5,8),(3,-1),(9,4)]
+a.sort(key=lambda x:x[1])
+print(a)
+
+#------------------------------------------
+
+my_list = [char for char in 'hello']
+my_list2 =[num for num in range(0,10) if (num%2==0)]
+print(my_list)
+print(my_list2)
+
+#------------------------------------------
+my_dict = {num:num**2 for num in [1,2,3,4,5]
+}
+
+print(my_dict)
+#---------------------------------------
+even_no = list(filter(lambda x : x%2==0,list(range(10))))
+odd_no =list(map(lambda x:x+1,even_no))
+two_list = list(zip(even_no,odd_no))
+print(even_no)
+print(odd_no)
+print(two_list)
+#---------------------------------------
+finalList = [x for x in 'abcdefghijklmnop']
+finalList = finalList*2
+finalList.append('w')
+finalList.append('z')
+finalList.sort()
+print(finalList)
+
+#-----------------------------------------------
+finalList = [x for x in 'abcdefghijklmnop']
+finalList = finalList*2
+finalList.append('w')
+finalList.append('z')
+finalList.sort()
+print(finalList)
+duplicates = list(set([x for x in finalList if finalList.count(x) > 1]))
+duplicates.sort()
+print(duplicates)
+
+#---------------------------------------------------------
+
+class Parrot:
+    # class attribute
+    name = ""
+    age = 0
+
+
+def printname(self):
+    print(parrot1.name + " is " + parrot1.age + " year old ," + parrot2.name + " is " + parrot2.age + " year old ")
+
+
+class Macaw(Parrot):
+    def caw(self):
+        print("I'm a Macaw and I can caw'")
+
+
+# create parrot1 object
+parrot1 = Macaw()
+parrot1.name = "Blu"
+parrot1.age = 10
+# create another object parrot2
+parrot2 = Macaw()
+parrot2.name = "Woo"
+parrot2.age = 15
+
+print(str(parrot1.name) + " is " + str(parrot1.age) + " year old ," + str(parrot2.name) + " is " + str(
+    parrot2.age) + " year old ")
+print(parrot1.caw())
+
+#---------------------------------------
+
+
+
+
